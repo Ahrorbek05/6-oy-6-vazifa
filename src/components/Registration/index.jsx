@@ -31,13 +31,13 @@ return (
             <div className={styles['filter-container']}>
                 <input
                     type="number"
-                    placeholder="Start ID"
+                    placeholder="Boshlang'ich ID ni kiriting!"
                     value={startId}
                     onChange={(e) => setStartId(e.target.value)}
                 />
                 <input
                     type="number"
-                    placeholder="End ID"
+                    placeholder="Oxirgi ID ni kiriting!"
                     value={endId}
                     onChange={(e) => setEndId(e.target.value)}
                 />
