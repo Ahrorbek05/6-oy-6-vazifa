@@ -6,19 +6,19 @@ function Index() {
   const [values, setValues] = useState([]);
   const [error, setError] = useState({});
 
-  function handleChange(event) {
+function handleChange(event) {
     let { name, value } = event.target;
     setValues({ ...values, [name]: value });
   }
 
-  function validate() {
-    let xatolik = {};
+function validate() {
+    const xatolik = {};
 
-    if (!values.fullName.trim()) {
+    if (!values.fullName) {
       xatolik.fullName = "Ismingizni to'g'ri va to'liq kiriting";
     }
 
-    if (!values.username.trim()) {
+    if (!values.username) {
       xatolik.username = "Foydalanuvchi nomini kiriting!";
     }
 
@@ -28,23 +28,34 @@ function Index() {
       xatolik.password = "Parol kamida 8 ta belgidan iborat bo'lishi kerak!";
     }
 
-    if (!values.biography.trim()) {
+    if (!values.biography) {
       xatolik.biography = "Biografiya kiriting!";
     }
+
     return xatolik;
   }
 
-  function handleSubmit(event) {
+function handleSubmit(event) {
     event.preventDefault();
-    let xatolik = validate();
+    const xatolik = validate();
     if (Object.keys(xatolik).length === 0) {
-      console.log("Ma'lumotlar yuborildi!", values);
+      localStorage.setItem('formData', JSON.stringify(values));
+      console.log("Ma'lumotlar yuborildi va localStorage ga saqlandi!", values);
+      setValues({
+        fullName: '',
+        email: '',
+        username: '',
+        password: '',
+        biography: '',
+      });
+      setError({});
     } else {
       setError(xatolik);
     }
   }
 
-  return (
+
+return (
     <div className={styles['wrap']}>
       <h1 className={styles['title']}>Create An Account</h1>
       <h3 className={styles['comment']}>Kindly fill the following details to create your account.</h3>
